@@ -25,9 +25,9 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/mypage', function () {
+    return Inertia::render('MyPage');
+})->middleware(['auth', 'verified'])->name('mypage');
 
 Route::resource('/blogs', BlogController::class)
     ->names(['index'=>'blog.index',
