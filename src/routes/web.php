@@ -29,8 +29,15 @@ Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/blogs', [BlogController::class, 'index'])
-    ->name('blog.index')
-    ->middleware('auth');
+Route::resource('/blogs', BlogController::class)
+    ->names(['index'=>'blog.index',
+            'create' => 'blog.create',
+            'store' => 'blog.store',
+            'destroy' => 'blog.destroy',
+            'edit' => 'blog.edit',
+            'update' => 'blog.update',
+            ])
+    ->middleware(['auth']);
+
 
 require __DIR__.'/auth.php';

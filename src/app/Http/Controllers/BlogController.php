@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
@@ -26,7 +27,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Blog/Create');
     }
 
     /**
@@ -35,9 +36,16 @@ class BlogController extends Controller
      * @param  \App\Http\Requests\StoreBlogRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogRequest $request)
+    public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'content' => ['required'],
+        ]);
+
+        Blog::create($request->all());
+
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -59,7 +67,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        //
+        return Inertia::render('Blog/Edit', ['blog' => $blog]);
     }
 
     /**
@@ -69,9 +77,15 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'content' => ['required']
+        ]);
+
+        $blog->update($request->all());
+        return redirect()->route('blog.index');
     }
 
     /**
@@ -82,6 +96,7 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        //
+        $blog->delete();
+        return redirect()->route('blog.index');
     }
 }
