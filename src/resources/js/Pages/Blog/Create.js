@@ -19,13 +19,14 @@ export default function Index(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("blog.store"));
+        post(route(`${props.target}.blog.store`));
     };
 
     return (
         <Authenticated
             auth={props.auth}
             errors={props.errors}
+            target={props.target}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                     Blog

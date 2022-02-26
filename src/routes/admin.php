@@ -13,10 +13,6 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Admin\BlogController;
 
-// Route::get('/', function () {
-//     return view('admin.welcome');
-// })->name('welcome');
-
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -28,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/mypage', function () {
-    return Inertia::render('MyPage');
+    return Inertia::render('MyPage', ['target' => "admin"]);
 })->middleware('auth:admins')->name('mypage');
 
 Route::resource('/blogs', BlogController::class)

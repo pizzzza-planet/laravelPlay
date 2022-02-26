@@ -7,7 +7,7 @@ import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 
-export default function Login({ status, canResetPassword }) {
+export default function Login({ status, canResetPassword, target }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         email: "",
         password: "",
@@ -32,7 +32,7 @@ export default function Login({ status, canResetPassword }) {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("login"));
+        post(route(`${target}.login`));
     };
 
     return (

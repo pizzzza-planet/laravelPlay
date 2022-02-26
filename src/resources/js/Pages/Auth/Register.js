@@ -6,7 +6,7 @@ import Label from "@/Components/Label";
 import ValidationErrors from "@/Components/ValidationErrors";
 import { Head, Link, useForm } from "@inertiajs/inertia-react";
 
-export default function Register() {
+export default function Register({ target }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         email: "",
@@ -32,7 +32,7 @@ export default function Register() {
     const submit = (e) => {
         e.preventDefault();
 
-        post(route("register"));
+        post(route(`${target}.register`));
     };
 
     return (
@@ -103,7 +103,7 @@ export default function Register() {
 
                 <div className="flex items-center justify-end mt-4">
                     <Link
-                        href={route("login")}
+                        href={route(`${target}.login`)}
                         className="underline text-sm text-white hover:text-pink-100"
                     >
                         Already registered?

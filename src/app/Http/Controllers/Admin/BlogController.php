@@ -10,6 +10,8 @@ use Inertia\Inertia;
 
 class BlogController extends Controller
 {
+    private const TARGET_USER = 'admin';
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +19,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Blog/Index', ['blogs' => Blog::all()]);
+        return Inertia::render('Blog/Index', ['blogs' => Blog::all(), 'target' => self::TARGET_USER]);
     }
 
     /**
@@ -45,18 +47,7 @@ class BlogController extends Controller
 
         Blog::create($request->all());
 
-        return redirect()->route('blog.index');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Blog  $blog
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Blog $blog)
-    {
-        //
+        return redirect()->route(self::TARGET_USER . '.blog.index');
     }
 
     /**
@@ -67,7 +58,7 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog)
     {
-        return Inertia::render('Blog/Edit', ['blog' => $blog]);
+        return Inertia::render('Blog/Edit', ['blog' => $blog, 'target' => self::TARGET_USER]);
     }
 
     /**
@@ -85,7 +76,7 @@ class BlogController extends Controller
         ]);
 
         $blog->update($request->all());
-        return redirect()->route('blog.index');
+        return redirect()->route(self::TARGET_USER . '.blog.index');
     }
 
     /**
@@ -97,6 +88,6 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         $blog->delete();
-        return redirect()->route('blog.index');
+        return redirect()->route(self::TARGET_USER . '.blog.index');
     }
 }

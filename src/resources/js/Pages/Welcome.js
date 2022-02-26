@@ -12,7 +12,7 @@ export default function Welcome(props) {
                 <div className="fixed top-0 px-6 py-4 sm:block">
                     {props.auth.user ? (
                         <Link
-                            href={route("mypage")}
+                            href={route(`${props.target}.mypage`)}
                             className="text-sm text-white underline"
                         >
                             MyPage

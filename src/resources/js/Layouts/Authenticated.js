@@ -5,7 +5,7 @@ import NavLink from "@/Components/NavLink";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import { Link } from "@inertiajs/inertia-react";
 
-export default function Authenticated({ auth, header, children }) {
+export default function Authenticated({ auth, header, children, target }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
@@ -23,13 +23,13 @@ export default function Authenticated({ auth, header, children }) {
 
                             <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink
-                                    href={route("blog.index")}
+                                    href={route(`${target}.blog.index`)}
                                     active={route().current("blog.index")}
                                 >
                                     Blog
                                 </NavLink>
                                 <NavLink
-                                    href={route("mypage")}
+                                    href={route(`${target}.mypage`)}
                                     active={route().current("mypage")}
                                 >
                                     MyPage
@@ -66,7 +66,7 @@ export default function Authenticated({ auth, header, children }) {
 
                                     <Dropdown.Content>
                                         <Dropdown.Link
-                                            href={route("logout")}
+                                            href={route(`${target}.logout`)}
                                             method="post"
                                             as="button"
                                         >
@@ -128,7 +128,7 @@ export default function Authenticated({ auth, header, children }) {
                 >
                     <div className="pt-2 pb-3 space-y-1">
                         <ResponsiveNavLink
-                            href={route("mypage")}
+                            href={route(`${target}.mypage`)}
                             active={route().current("mypage")}
                         >
                             MyPage
@@ -148,7 +148,7 @@ export default function Authenticated({ auth, header, children }) {
                         <div className="mt-3 space-y-1">
                             <ResponsiveNavLink
                                 method="post"
-                                href={route("logout")}
+                                href={route(`${target}.logout`)}
                                 as="button"
                             >
                                 Log Out

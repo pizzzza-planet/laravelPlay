@@ -19,13 +19,14 @@ export default function Edit(props) {
     const submit = (e) => {
         e.preventDefault();
 
-        patch(route("blog.update", props.blog.id));
+        patch(route(`${props.target}.blog.update`, props.blog.id));
     };
 
     return (
         <Authenticated
             auth={props.auth}
             errors={props.errors}
+            target={props.target}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                     Blog

@@ -7,7 +7,7 @@ import { Link } from "@inertiajs/inertia-react";
 export default function Index(props) {
     const { delete: destroy } = useForm();
     const handleDelete = (id) => {
-        destroy(route("blog.destroy", id), {
+        destroy(route(`${props.target}.blog.destroy`, id), {
             preserveScroll: true,
         });
     };
@@ -16,6 +16,7 @@ export default function Index(props) {
         <Authenticated
             auth={props.auth}
             errors={props.errors}
+            target={props.target}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                     Blog
@@ -29,7 +30,9 @@ export default function Index(props) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
                             <div>
-                                <Link href={route("blog.create")}>
+                                <Link
+                                    href={route(`${props.target}.blog.create`)}
+                                >
                                     <Button type="button">新規作成</Button>
                                 </Link>
                             </div>
@@ -53,7 +56,7 @@ export default function Index(props) {
                                                 <td className="border px-4 py-2">
                                                     <Link
                                                         href={route(
-                                                            "blog.edit",
+                                                            `${props.target}.blog.edit`,
                                                             blog.id
                                                         )}
                                                     >

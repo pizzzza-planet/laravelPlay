@@ -7,6 +7,7 @@ export default function MyPage(props) {
         <Authenticated
             auth={props.auth}
             errors={props.errors}
+            target={props.target}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                     My Page

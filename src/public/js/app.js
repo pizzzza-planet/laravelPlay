@@ -2562,7 +2562,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function Authenticated(_ref) {
   var auth = _ref.auth,
       header = _ref.header,
-      children = _ref.children;
+      children = _ref.children,
+      target = _ref.target;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2590,11 +2591,11 @@ function Authenticated(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
               className: "hidden space-x-8 sm:-my-px sm:ml-10 sm:flex",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                href: route("blog.index"),
+                href: route("".concat(target, ".blog.index")),
                 active: route().current("blog.index"),
                 children: "Blog"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_NavLink__WEBPACK_IMPORTED_MODULE_3__["default"], {
-                href: route("mypage"),
+                href: route("".concat(target, ".mypage")),
                 active: route().current("mypage"),
                 children: "MyPage"
               })]
@@ -2625,7 +2626,7 @@ function Authenticated(_ref) {
                   })
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Content, {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_Dropdown__WEBPACK_IMPORTED_MODULE_2__["default"].Link, {
-                    href: route("logout"),
+                    href: route("".concat(target, ".logout")),
                     method: "post",
                     as: "button",
                     children: "Log Out"
@@ -2669,7 +2670,7 @@ function Authenticated(_ref) {
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
           className: "pt-2 pb-3 space-y-1",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            href: route("mypage"),
+            href: route("".concat(target, ".mypage")),
             active: route().current("mypage"),
             children: "MyPage"
           })
@@ -2688,7 +2689,7 @@ function Authenticated(_ref) {
             className: "mt-3 space-y-1",
             children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Components_ResponsiveNavLink__WEBPACK_IMPORTED_MODULE_4__["default"], {
               method: "post",
-              href: route("logout"),
+              href: route("".concat(target, ".logout")),
               as: "button",
               children: "Log Out"
             })
@@ -2953,7 +2954,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Login(_ref) {
   var status = _ref.status,
-      canResetPassword = _ref.canResetPassword;
+      canResetPassword = _ref.canResetPassword,
+      target = _ref.target;
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_7__.useForm)({
     email: "",
@@ -2979,7 +2981,7 @@ function Login(_ref) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route("login"));
+    post(route("".concat(target, ".login")));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_3__["default"], {
@@ -3077,7 +3079,9 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Register() {
+function Register(_ref) {
+  var target = _ref.target;
+
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.useForm)({
     name: "",
     email: "",
@@ -3103,7 +3107,7 @@ function Register() {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route("register"));
+    post(route("".concat(target, ".register")));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Guest__WEBPACK_IMPORTED_MODULE_2__["default"], {
@@ -3171,7 +3175,7 @@ function Register() {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "flex items-center justify-end mt-4",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_6__.Link, {
-          href: route("login"),
+          href: route("".concat(target, ".login")),
           className: "underline text-sm text-white hover:text-pink-100",
           children: "Already registered?"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -3415,12 +3419,13 @@ function Index(props) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route("blog.store"));
+    post(route("".concat(props.target, ".blog.store")));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
+    target: props.target,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "Blog"
@@ -3525,12 +3530,13 @@ function Edit(props) {
 
   var submit = function submit(e) {
     e.preventDefault();
-    patch(route("blog.update", props.blog.id));
+    patch(route("".concat(props.target, ".blog.update"), props.blog.id));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
+    target: props.target,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "Blog"
@@ -3618,7 +3624,7 @@ function Index(props) {
       destroy = _useForm["delete"];
 
   var handleDelete = function handleDelete(id) {
-    destroy(route("blog.destroy", id), {
+    destroy(route("".concat(props.target, ".blog.destroy"), id), {
       preserveScroll: true
     });
   };
@@ -3626,6 +3632,7 @@ function Index(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
+    target: props.target,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "Blog"
@@ -3642,7 +3649,7 @@ function Index(props) {
             className: "p-6 bg-white border-b border-gray-200",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                href: route("blog.create"),
+                href: route("".concat(props.target, ".blog.create")),
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_3__["default"], {
                   type: "button",
                   children: "\u65B0\u898F\u4F5C\u6210"
@@ -3669,7 +3676,7 @@ function Index(props) {
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                       className: "border px-4 py-2",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                        href: route("blog.edit", blog.id),
+                        href: route("".concat(props.target, ".blog.edit"), blog.id),
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                           className: "px-4 py-2 bg-green-500 text-white rounded-lg text-xs font-semibold",
                           children: "\u66F4\u65B0"
@@ -3722,6 +3729,7 @@ function MyPage(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
     auth: props.auth,
     errors: props.errors,
+    target: props.target,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "My Page"
@@ -3777,7 +3785,7 @@ function Welcome(props) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "fixed top-0 px-6 py-4 sm:block",
         children: props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          href: route("mypage"),
+          href: route("".concat(props.target, ".mypage")),
           className: "text-sm text-white underline",
           children: "MyPage"
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
