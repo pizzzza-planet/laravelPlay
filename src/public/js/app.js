@@ -3772,8 +3772,8 @@ function Welcome(props) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", {
       className: "relative flex items-top justify-center min-h-screen bg-blue-800 sm:items-center sm:pt-0",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-        "class": "font-semibold text-2xl text-blue-200",
-        children: "Welcome"
+        className: "font-semibold text-2xl text-blue-200",
+        children: props.target === "user" ? "Welcome" : "Welcome Admin"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
         className: "fixed top-0 px-6 py-4 sm:block",
         children: props.auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
@@ -3782,11 +3782,11 @@ function Welcome(props) {
           children: "MyPage"
         }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-            href: route("login"),
+            href: route("".concat(props.target, ".login")),
             className: "text-sm text-white underline",
             children: "Log in"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-            href: route("register"),
+            href: route("".concat(props.target, ".register")),
             className: "ml-4 text-sm text-white underline",
             children: "Register"
           })]

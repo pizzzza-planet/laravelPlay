@@ -6,7 +6,9 @@ export default function Welcome(props) {
         <>
             <Head title="Welcome" />
             <div className="relative flex items-top justify-center min-h-screen bg-blue-800 sm:items-center sm:pt-0">
-                <div class="font-semibold text-2xl text-blue-200">Welcome</div>
+                <div className="font-semibold text-2xl text-blue-200">
+                    {props.target === "user" ? "Welcome" : "Welcome Admin"}
+                </div>
                 <div className="fixed top-0 px-6 py-4 sm:block">
                     {props.auth.user ? (
                         <Link
@@ -18,14 +20,14 @@ export default function Welcome(props) {
                     ) : (
                         <>
                             <Link
-                                href={route("login")}
+                                href={route(`${props.target}.login`)}
                                 className="text-sm text-white underline"
                             >
                                 Log in
                             </Link>
 
                             <Link
-                                href={route("register")}
+                                href={route(`${props.target}.register`)}
                                 className="ml-4 text-sm text-white underline"
                             >
                                 Register
