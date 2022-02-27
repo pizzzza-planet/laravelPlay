@@ -37,8 +37,8 @@ export default function Index(props) {
             <Head title="Blog Create" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-white border-b border-gray-200">
+                    <div className="bg-blue-600 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="p-6 bg-blue-600 border-b border-blue-900">
                             <ValidationErrors errors={props.errors} />
                             <form onSubmit={submit}>
                                 <div>
@@ -52,7 +52,7 @@ export default function Index(props) {
                                         handleChange={onHandleChange}
                                     />
                                 </div>
-                                <div>
+                                <div className="pt-10">
                                     <Label forInput="content" value="Content" />
 
                                     <Input

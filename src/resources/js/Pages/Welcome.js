@@ -13,7 +13,7 @@ export default function Welcome(props) {
                     {props.auth.user ? (
                         <Link
                             href={route(`${props.target}.mypage`)}
-                            className="text-sm text-white underline"
+                            className="text-sm text-blue-200 underline"
                         >
                             MyPage
                         </Link>
@@ -21,14 +21,14 @@ export default function Welcome(props) {
                         <>
                             <Link
                                 href={route(`${props.target}.login`)}
-                                className="text-sm text-white underline"
+                                className=" text-blue-200 underline"
                             >
                                 Log in
                             </Link>
 
                             <Link
                                 href={route(`${props.target}.register`)}
-                                className="ml-4 text-sm text-white underline"
+                                className="ml-4  text-blue-200 underline"
                             >
                                 Register
                             </Link>
