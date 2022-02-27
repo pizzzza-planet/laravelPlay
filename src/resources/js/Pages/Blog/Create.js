@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Authenticated from "@/Layouts/Authenticated";
 import { Head, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
@@ -12,21 +12,22 @@ export default function Index(props) {
         content: "",
     });
 
+    const { auth, target } = props;
+
     const onHandleChange = (event) => {
         setData(event.target.name, event.target.value);
     };
 
     const submit = (e) => {
         e.preventDefault();
-
-        post(route(`${props.target}.blog.store`));
+        post(route(`${target}.blog.store`));
     };
 
     return (
         <Authenticated
-            auth={props.auth}
+            auth={auth}
             errors={props.errors}
-            target={props.target}
+            target={target}
             header={
                 <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                     Blog
@@ -38,11 +39,10 @@ export default function Index(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="p-6 bg-white border-b border-gray-200">
-                            <ValidationErrors errors={errors} />
+                            <ValidationErrors errors={props.errors} />
                             <form onSubmit={submit}>
                                 <div>
                                     <Label forInput="title" value="Title" />
-
                                     <Input
                                         type="text"
                                         name="title"

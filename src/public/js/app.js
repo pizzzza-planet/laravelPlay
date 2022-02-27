@@ -3413,19 +3413,22 @@ function Index(props) {
       processing = _useForm.processing,
       errors = _useForm.errors;
 
+  var auth = props.auth,
+      target = props.target;
+
   var onHandleChange = function onHandleChange(event) {
     setData(event.target.name, event.target.value);
   };
 
   var submit = function submit(e) {
     e.preventDefault();
-    post(route("".concat(props.target, ".blog.store")));
+    post(route("".concat(target, ".blog.store")));
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_Layouts_Authenticated__WEBPACK_IMPORTED_MODULE_1__["default"], {
-    auth: props.auth,
+    auth: auth,
     errors: props.errors,
-    target: props.target,
+    target: target,
     header: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h2", {
       className: "font-semibold text-xl text-gray-800 leading-tight",
       children: "Blog"
@@ -3441,7 +3444,7 @@ function Index(props) {
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
             className: "p-6 bg-white border-b border-gray-200",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_6__["default"], {
-              errors: errors
+              errors: props.errors
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
               onSubmit: submit,
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {

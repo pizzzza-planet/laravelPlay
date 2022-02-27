@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class BlogController extends Controller
@@ -19,7 +20,10 @@ class BlogController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Blog/Index', ['blogs' => Blog::all(), 'target' => self::TARGET_USER]);
+        $query = Blog::query();
+        $blogs = $query->where('user_id', Auth::id())->get();
+
+        return Inertia::render('Blog/Index', ['blogs' => $blogs, 'target' => self::TARGET_USER]);
     }
 
     /**
@@ -44,6 +48,8 @@ class BlogController extends Controller
             'title' => ['required'],
             'content' => ['required'],
         ]);
+
+        $request->merge(['user_id' => Auth::id()]);
 
         Blog::create($request->all());
 
