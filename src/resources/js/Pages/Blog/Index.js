@@ -45,7 +45,6 @@ export default function Index(props) {
                                 </thead>
                                 <tbody>
                                     {props.blogs.map((blog) => {
-                                        console.log(blog);
                                         return (
                                             <tr key={blog.id}>
                                                 <td className="border px-4 py-2">

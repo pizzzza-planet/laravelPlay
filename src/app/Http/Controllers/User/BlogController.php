@@ -79,8 +79,11 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($blogId)
     {
+        $query = Blog::query();
+        $blog = $query->with('category')->where('id', $blogId)->first();
+
         return Inertia::render('Blog/Edit', ['blog' => $blog, 'target' => self::TARGET_USER]);
     }
 
@@ -91,14 +94,25 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $blogId)
     {
         $request->validate([
             'title' => ['required'],
-            'content' => ['required']
+            'content' => ['required'],
+            'category_name' => ['max:32']
         ]);
 
-        $blog->update($request->all());
+        $target = Blog::with('category')->where('id', $blogId)->first();
+
+        $target->update([
+            'title' => $request->title,
+            'content' => $request->content,
+        ]);
+
+        $target->category->update([
+            'category_name' => $request->category_name
+        ]);
+
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
 

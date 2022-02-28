@@ -3527,7 +3527,8 @@ __webpack_require__.r(__webpack_exports__);
 function Edit(props) {
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
     title: props.blog.title,
-    content: props.blog.content
+    content: props.blog.content,
+    category_name: props.blog.category.category_name
   }),
       data = _useForm.data,
       setData = _useForm.setData,
@@ -3559,9 +3560,9 @@ function Edit(props) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
         className: "max-w-7xl mx-auto sm:px-6 lg:px-8",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-          className: "bg-white overflow-hidden shadow-sm sm:rounded-lg",
+          className: "bg-blue-600 overflow-hidden shadow-sm sm:rounded-lg",
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-            className: "p-6 bg-white border-b border-gray-200",
+            className: "p-6 bg-blue-600 border-b border-blue-900",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_ValidationErrors__WEBPACK_IMPORTED_MODULE_6__["default"], {
               errors: errors
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("form", {
@@ -3574,6 +3575,18 @@ function Edit(props) {
                   type: "text",
                   name: "title",
                   value: data.title,
+                  className: "mt-1 block w-full",
+                  isFocused: true,
+                  handleChange: onHandleChange
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Label__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                  forInput: "category_name",
+                  value: "Category"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Input__WEBPACK_IMPORTED_MODULE_3__["default"], {
+                  type: "text",
+                  name: "category_name",
+                  value: data.category_name,
                   className: "mt-1 block w-full",
                   isFocused: true,
                   handleChange: onHandleChange
@@ -3677,7 +3690,6 @@ function Index(props) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tbody", {
                 children: props.blogs.map(function (blog) {
-                  console.log(blog);
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                       className: "border px-4 py-2",

@@ -10,6 +10,7 @@ export default function Edit(props) {
     const { data, setData, patch, processing, errors } = useForm({
         title: props.blog.title,
         content: props.blog.content,
+        category_name: props.blog.category.category_name,
     });
 
     const onHandleChange = (event) => {
@@ -36,8 +37,8 @@ export default function Edit(props) {
             <Head title="Blog Edit" />
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 bg-white border-b border-gray-200">
+                    <div className="bg-blue-600 overflow-hidden shadow-sm sm:rounded-lg">
+                        <div className="p-6 bg-blue-600 border-b border-blue-900">
                             <ValidationErrors errors={errors} />
                             <form onSubmit={submit}>
                                 <div>
@@ -47,6 +48,21 @@ export default function Edit(props) {
                                         type="text"
                                         name="title"
                                         value={data.title}
+                                        className="mt-1 block w-full"
+                                        isFocused={true}
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div>
+                                    <Label
+                                        forInput="category_name"
+                                        value="Category"
+                                    />
+
+                                    <Input
+                                        type="text"
+                                        name="category_name"
+                                        value={data.category_name}
                                         className="mt-1 block w-full"
                                         isFocused={true}
                                         handleChange={onHandleChange}
