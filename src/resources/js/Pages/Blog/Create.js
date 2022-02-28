@@ -10,6 +10,7 @@ export default function Index(props) {
     const { data, setData, post, processing, errors } = useForm({
         title: "",
         content: "",
+        category_name: "",
     });
 
     const { auth, target } = props;
@@ -53,8 +54,20 @@ export default function Index(props) {
                                     />
                                 </div>
                                 <div className="pt-10">
+                                    <Label
+                                        forInput="category_name"
+                                        value="Category"
+                                    />
+                                    <Input
+                                        type="text"
+                                        name="category_name"
+                                        value={data.category_name}
+                                        className="mt-1 block w-full"
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div className="pt-10">
                                     <Label forInput="content" value="Content" />
-
                                     <Input
                                         type="text"
                                         name="content"

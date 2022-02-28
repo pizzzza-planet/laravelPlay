@@ -12,7 +12,8 @@ class Blog extends Model
     protected $fillable = [
         'user_id',
         'title',
-        'content'
+        'content',
+        'category_id'
     ];
 
     public function category()

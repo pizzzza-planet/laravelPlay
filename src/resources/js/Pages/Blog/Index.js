@@ -45,6 +45,7 @@ export default function Index(props) {
                                 </thead>
                                 <tbody>
                                     {props.blogs.map((blog) => {
+                                        console.log(blog);
                                         return (
                                             <tr key={blog.id}>
                                                 <td className="border px-4 py-2">
@@ -52,6 +53,12 @@ export default function Index(props) {
                                                 </td>
                                                 <td className="border px-4 py-2">
                                                     {blog.content}
+                                                </td>
+                                                <td className="border px-4 py-2">
+                                                    {
+                                                        blog.category
+                                                            .category_name
+                                                    }
                                                 </td>
                                                 <td className="border px-4 py-2">
                                                     <Link

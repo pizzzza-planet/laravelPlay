@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
@@ -21,7 +22,7 @@ class BlogController extends Controller
     public function index()
     {
         $query = Blog::query();
-        $blogs = $query->where('user_id', Auth::id())->get();
+        $blogs = $query->with('category')->where('user_id', Auth::id())->get();
 
         return Inertia::render('Blog/Index', ['blogs' => $blogs, 'target' => self::TARGET_USER]);
     }
@@ -47,11 +48,27 @@ class BlogController extends Controller
         $request->validate([
             'title' => ['required'],
             'content' => ['required'],
+            'category_name' => ['max:32']
         ]);
 
-        $request->merge(['user_id' => Auth::id()]);
+        $categoryCnt = Category::query()->get()->count();
 
-        Blog::create($request->all());
+        $request->merge([
+            'user_id' => Auth::id(),
+            'category_id' => $categoryCnt ? 1 : $categoryCnt + 1
+        ]);
+        // dd($request);
+
+        Blog::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'content' => $request->content,
+            'category_id' => $request->category_id,
+        ]);
+
+        Category::create([
+            'category_name' => $request->category_name
+        ]);
 
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
