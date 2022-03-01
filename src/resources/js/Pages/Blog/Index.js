@@ -41,25 +41,29 @@ export default function Index(props) {
                                     <tr>
                                         <th>タイトル</th>
                                         <th>コンテンツ</th>
+                                        <th>カテゴリ</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {props.blogs.map((blog) => {
                                         return (
-                                            <tr key={blog.id}>
-                                                <td className="border px-4 py-2">
+                                            <tr
+                                                key={blog.id}
+                                                className="w-full"
+                                            >
+                                                <td className="border px-4 py-2 w-1/4">
                                                     {blog.title}
                                                 </td>
-                                                <td className="border px-4 py-2">
+                                                <td className="border px-4 py-2 w-1/3">
                                                     {blog.content}
                                                 </td>
-                                                <td className="border px-4 py-2">
+                                                <td className="border px-4 py-2 w-1/5">
                                                     {
                                                         blog.category
                                                             .category_name
                                                     }
                                                 </td>
-                                                <td className="border px-4 py-2">
+                                                <td className="border px-4 py-2 w-1/12">
                                                     <Link
                                                         href={route(
                                                             `${props.target}.blog.edit`,
@@ -71,7 +75,7 @@ export default function Index(props) {
                                                         </button>
                                                     </Link>
                                                 </td>
-                                                <td className="border px-4 py-2">
+                                                <td className="border px-4 py-2 w-1/12">
                                                     <button
                                                         className="px-4 py-2 bg-red-500 text-white rounded-lg text-xs font-semibold"
                                                         onClick={() =>

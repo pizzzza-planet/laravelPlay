@@ -3686,22 +3686,25 @@ function Index(props) {
                     children: "\u30BF\u30A4\u30C8\u30EB"
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
                     children: "\u30B3\u30F3\u30C6\u30F3\u30C4"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("th", {
+                    children: "\u30AB\u30C6\u30B4\u30EA"
                   })]
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("tbody", {
                 children: props.blogs.map(function (blog) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("tr", {
+                    className: "w-full",
                     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2",
+                      className: "border px-4 py-2 w-1/4",
                       children: blog.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2",
+                      className: "border px-4 py-2 w-1/3",
                       children: blog.content
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2",
+                      className: "border px-4 py-2 w-1/5",
                       children: blog.category.category_name
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2",
+                      className: "border px-4 py-2 w-1/12",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
                         href: route("".concat(props.target, ".blog.edit"), blog.id),
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
@@ -3710,7 +3713,7 @@ function Index(props) {
                         })
                       })
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2",
+                      className: "border px-4 py-2 w-1/12",
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("button", {
                         className: "px-4 py-2 bg-red-500 text-white rounded-lg text-xs font-semibold",
                         onClick: function onClick() {

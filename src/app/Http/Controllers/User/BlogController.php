@@ -7,7 +7,10 @@ use App\Http\Requests\Blog\UpdateRequest;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Inertia\Inertia;
+use Throwable;
 
 class BlogController extends Controller
 {
@@ -50,18 +53,24 @@ class BlogController extends Controller
             'user_id' => Auth::id(),
             'category_id' => $categoryCnt ? 1 : $categoryCnt + 1
         ]);
-        // dd($request);
 
-        Blog::create([
-            'user_id' => $request->user_id,
-            'title' => $request->title,
-            'content' => $request->content,
-            'category_id' => $request->category_id,
-        ]);
+        try {
+            DB::transaction(function () use($request) {
+                Blog::create([
+                    'user_id' => $request->user_id,
+                    'title' => $request->title,
+                    'content' => $request->content,
+                    'category_id' => $request->category_id,
+                ]);
 
-        Category::create([
-            'category_name' => $request->category_name
-        ]);
+                Category::create([
+                    'category_name' => $request->category_name
+                ]);
+            });
+        } catch(Throwable $e) {
+            Log::error($e);
+            throw $e;
+        }
 
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
@@ -91,14 +100,21 @@ class BlogController extends Controller
     {
         $target = Blog::with('category')->where('id', $blogId)->first();
 
-        $target->update([
-            'title' => $request->title,
-            'content' => $request->content,
-        ]);
+        try {
+            DB::transaction(function () use($request, $target) {
+                $target->update([
+                    'title' => $request->title,
+                    'content' => $request->content,
+                ]);
 
-        $target->category->update([
-            'category_name' => $request->category_name
-        ]);
+                $target->category->update([
+                    'category_name' => $request->category_name
+                ]);
+            });
+        } catch(Throwable $e) {
+            Log::error($e);
+            throw $e;
+        }
 
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
