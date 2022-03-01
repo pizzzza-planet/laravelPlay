@@ -54,6 +54,16 @@ export default function Index(props) {
                                     />
                                 </div>
                                 <div className="pt-10">
+                                    <Label forInput="content" value="Content" />
+                                    <Input
+                                        type="text"
+                                        name="content"
+                                        value={data.content}
+                                        className="mt-1 block w-full"
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div className="pt-10">
                                     <Label
                                         forInput="category_name"
                                         value="Category"
@@ -62,16 +72,6 @@ export default function Index(props) {
                                         type="text"
                                         name="category_name"
                                         value={data.category_name}
-                                        className="mt-1 block w-full"
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div className="pt-10">
-                                    <Label forInput="content" value="Content" />
-                                    <Input
-                                        type="text"
-                                        name="content"
-                                        value={data.content}
                                         className="mt-1 block w-full"
                                         handleChange={onHandleChange}
                                     />

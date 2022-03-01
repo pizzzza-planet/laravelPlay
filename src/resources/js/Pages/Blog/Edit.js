@@ -54,6 +54,17 @@ export default function Edit(props) {
                                     />
                                 </div>
                                 <div>
+                                    <Label forInput="content" value="Content" />
+
+                                    <Input
+                                        type="text"
+                                        name="content"
+                                        value={data.content}
+                                        className="mt-1 block w-full"
+                                        handleChange={onHandleChange}
+                                    />
+                                </div>
+                                <div>
                                     <Label
                                         forInput="category_name"
                                         value="Category"
@@ -65,17 +76,6 @@ export default function Edit(props) {
                                         value={data.category_name}
                                         className="mt-1 block w-full"
                                         isFocused={true}
-                                        handleChange={onHandleChange}
-                                    />
-                                </div>
-                                <div>
-                                    <Label forInput="content" value="Content" />
-
-                                    <Input
-                                        type="text"
-                                        name="content"
-                                        value={data.content}
-                                        className="mt-1 block w-full"
                                         handleChange={onHandleChange}
                                     />
                                 </div>
