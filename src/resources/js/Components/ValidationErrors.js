@@ -5,7 +5,7 @@ export default function ValidationErrors({ errors }) {
         Object.keys(errors).length > 0 && (
             <div className="mb-4">
                 <div className="font-medium text-red-600">
-                    Whoops! Something went wrong.
+                    バリデーションエラー
                 </div>
 
                 <ul className="mt-3 list-disc list-inside text-sm text-red-600">

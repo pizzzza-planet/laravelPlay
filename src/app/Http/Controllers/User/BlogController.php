@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\StoreBlogRequest;
-use App\Http\Requests\UpdateBlogRequest;
+use App\Http\Requests\Blog\CreateRequest;
+use App\Http\Requests\Blog\UpdateRequest;
 use App\Models\Blog;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
@@ -40,17 +39,11 @@ class BlogController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreBlogRequest  $request
+     * @param  \App\Http\Requests\Blog\CreateRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateRequest $request)
     {
-        $request->validate([
-            'title' => ['required'],
-            'content' => ['required'],
-            'category_name' => ['max:32']
-        ]);
-
         $categoryCnt = Category::query()->get()->count();
 
         $request->merge([
@@ -90,18 +83,12 @@ class BlogController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateBlogRequest  $request
+     * @param  \App\Http\Requests\Blog\UpdateRequest  $request
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $blogId)
+    public function update(UpdateRequest $request, $blogId)
     {
-        $request->validate([
-            'title' => ['required'],
-            'content' => ['required'],
-            'category_name' => ['max:32']
-        ]);
-
         $target = Blog::with('category')->where('id', $blogId)->first();
 
         $target->update([
