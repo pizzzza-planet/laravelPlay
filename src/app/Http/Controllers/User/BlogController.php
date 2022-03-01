@@ -5,12 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Http\Requests\Blog\CreateRequest;
 use App\Http\Requests\Blog\UpdateRequest;
 use App\Models\Blog;
-use App\Models\Category;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
+use App\Services\BlogService;
 use Inertia\Inertia;
-use Throwable;
 
 class BlogController extends Controller
 {
@@ -23,8 +19,8 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $query = Blog::query();
-        $blogs = $query->with('category')->where('user_id', Auth::id())->get();
+        $blogService = new BlogService();
+        $blogs = $blogService->getBlogs();
 
         return Inertia::render('Blog/Index', ['blogs' => $blogs, 'target' => self::TARGET_USER]);
     }
@@ -47,30 +43,8 @@ class BlogController extends Controller
      */
     public function store(CreateRequest $request)
     {
-        $categoryCnt = Category::query()->get()->count();
-
-        $request->merge([
-            'user_id' => Auth::id(),
-            'category_id' => $categoryCnt ? 1 : $categoryCnt + 1
-        ]);
-
-        try {
-            DB::transaction(function () use($request) {
-                Blog::create([
-                    'user_id' => $request->user_id,
-                    'title' => $request->title,
-                    'content' => $request->content,
-                    'category_id' => $request->category_id,
-                ]);
-
-                Category::create([
-                    'category_name' => $request->category_name
-                ]);
-            });
-        } catch(Throwable $e) {
-            Log::error($e);
-            throw $e;
-        }
+        $blogService = new BlogService();
+        $blogService->createBlogs($request);
 
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
@@ -83,8 +57,8 @@ class BlogController extends Controller
      */
     public function edit($blogId)
     {
-        $query = Blog::query();
-        $blog = $query->with('category')->where('id', $blogId)->first();
+        $blogService = new BlogService();
+        $blog = $blogService->selectByBlogId($blogId);
 
         return Inertia::render('Blog/Edit', ['blog' => $blog, 'target' => self::TARGET_USER]);
     }
@@ -98,23 +72,8 @@ class BlogController extends Controller
      */
     public function update(UpdateRequest $request, $blogId)
     {
-        $target = Blog::with('category')->where('id', $blogId)->first();
-
-        try {
-            DB::transaction(function () use($request, $target) {
-                $target->update([
-                    'title' => $request->title,
-                    'content' => $request->content,
-                ]);
-
-                $target->category->update([
-                    'category_name' => $request->category_name
-                ]);
-            });
-        } catch(Throwable $e) {
-            Log::error($e);
-            throw $e;
-        }
+        $blogService = new BlogService();
+        $blogService->updateBlog($request, $blogId);
 
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
@@ -127,7 +86,9 @@ class BlogController extends Controller
      */
     public function destroy(Blog $blog)
     {
-        $blog->delete();
+        $blogService = new BlogService();
+        $blogService->deleteBlog($blog);
+
         return redirect()->route(self::TARGET_USER . '.blog.index');
     }
 }

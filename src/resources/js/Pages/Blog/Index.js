@@ -54,7 +54,7 @@ export default function Index(props) {
                                                 <td className="border px-4 py-2 w-1/4">
                                                     {blog.title}
                                                 </td>
-                                                <td className="border px-4 py-2 w-1/3">
+                                                <td className="border px-4 py-2 w-1/2">
                                                     {blog.content}
                                                 </td>
                                                 <td className="border px-4 py-2 w-1/5">

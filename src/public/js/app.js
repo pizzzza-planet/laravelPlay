@@ -3698,7 +3698,7 @@ function Index(props) {
                       className: "border px-4 py-2 w-1/4",
                       children: blog.title
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
-                      className: "border px-4 py-2 w-1/3",
+                      className: "border px-4 py-2 w-1/2",
                       children: blog.content
                     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("td", {
                       className: "border px-4 py-2 w-1/5",
