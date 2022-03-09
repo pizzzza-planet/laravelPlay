@@ -4,6 +4,7 @@ import { Head, useForm } from "@inertiajs/inertia-react";
 import Input from "@/Components/Input";
 import Label from "@/Components/Label";
 import Button from "@/Components/Button";
+import MarkdownEditor from "@/Components/MarkdownEditor";
 import ValidationErrors from "@/Components/ValidationErrors";
 
 export default function Index(props) {
@@ -62,6 +63,10 @@ export default function Index(props) {
                                         className="mt-1 block w-full"
                                         handleChange={onHandleChange}
                                     />
+                                </div>
+                                <div className="pt-10">
+                                    <Label forInput="content" value="Content" />
+                                    <MarkdownEditor />
                                 </div>
                                 <div className="pt-10">
                                     <Label
